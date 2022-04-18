@@ -1,16 +1,28 @@
 
+// add click event for movie search button
 document.querySelector('button').addEventListener('click', getFetch)
 
+//function to grab movie options from api based on search input
 function getFetch(){
 
   const movie = document.querySelector('input').value
-  const url = `https://imdb-api.com/en/API/SearchMovie/k_3k414l0w/${movie}`
+  const url1 = `https://imdb-api.com/en/API/SearchMovie/k_3k414l0w/${movie}`
   
-  fetch(url)
+  fetch(url1)
       .then(res => res.json()) // parse response as JSON
       .then(data => {
-
         console.log(data.results)
+
+        fetch(url1)
+            .then(res => res.json()) // parse response as JSON
+            .then(data => {
+              
+              console.log(data.results)
+
+            })
+            .catch(err => {
+                console.log(`error ${err}`)
+            });
 
         const item = new MovieInfo(data) 
         item.showResults()
@@ -47,5 +59,7 @@ class MovieInfo {
     } 
   }
 }
+
+document.querySelector('')
 
 
